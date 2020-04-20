@@ -26,7 +26,7 @@ if [ -z "$(command -v curl)" ]; then
     exit 1
 fi
 
-echo -n "[*] Uploading packages... "
+echo -n "[*] Uploading ${1}"
 if RESULT_URL=$(curl --silent -F "${1}" https://file.io) > /dev/null 2>&1; then
     echo "ok"
     echo
