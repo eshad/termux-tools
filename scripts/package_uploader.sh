@@ -26,13 +26,14 @@ if [ -z "$(command -v curl)" ]; then
     exit 1
 fi
 
-echo -n "[*] Uploading ${1}"
-if RESULT_URL=$(curl --silent -F "${1}" https://file.io) > /dev/null 2>&1; then
+echo -n "[*] Uploading ${1}..."
+if RESULT_URL=$(curl --silent -F "file=@${1}" https://file.io/?expires=2) > /dev/null 2>&1; then
     echo "ok"
     echo
-    echo "Packages uploaded to ${RESULT_URL}"
+    echo "${1} uploaded to ${RESULT_URL}"
     exit 0
 else
+    echo
     echo "[!] Failed to upload packages."
     echo
     echo "However, since build was successfull, exiting"
